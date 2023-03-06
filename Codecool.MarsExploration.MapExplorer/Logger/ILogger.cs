@@ -2,5 +2,7 @@
 
 public interface ILogger
 {
-    void Log(string message);
+    void LogToConsole(string message);
+
+    void LogToFile(string message, string fileName);
 }
