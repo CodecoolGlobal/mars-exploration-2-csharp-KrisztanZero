@@ -7,6 +7,6 @@ public class ExplorationSimulator : IExplorationSimulator
 {
     public SimulationContext ExploringSimulator(Map map, Configuration.Configuration configuration)
     {
-        
+        return null;
     }
 }
