@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codecool.MarsExploration.Ma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codecool.MarsExploration.MapExplorer", "Codecool.MarsExploration.MapExplorer\Codecool.MarsExploration.MapExplorer.csproj", "{E265CC0A-5AC3-481C-8C85-93C8F990F0B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapExplorerTest", "MapExplorerTest\MapExplorerTest.csproj", "{73F53D35-6BE0-408E-9F74-AF48F395BDC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{E265CC0A-5AC3-481C-8C85-93C8F990F0B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E265CC0A-5AC3-481C-8C85-93C8F990F0B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E265CC0A-5AC3-481C-8C85-93C8F990F0B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73F53D35-6BE0-408E-9F74-AF48F395BDC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73F53D35-6BE0-408E-9F74-AF48F395BDC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73F53D35-6BE0-408E-9F74-AF48F395BDC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73F53D35-6BE0-408E-9F74-AF48F395BDC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
