@@ -34,17 +34,17 @@ public class Tests
     [Test]
     public void TestWhenTheValidatorIsGiveBackTrue()
     {
-        var map =
+        var filePath =
             "/Users/kincsesbence/Desktop/OOP_Module_Folder/mars-exploration-2-csharp-KrisztanZero/Codecool.MarsExploration.MapExplorer/Resources/exploration-0.map";
         
         var landingCoordinates = new Coordinate(21, 10);
-        
+
         var elementList = new List<string>() { "#", "*", "&", "%" };
 
-        var configuration = new Configuration(map, landingCoordinates, elementList,60);
-        
+        var configuration = new Configuration(filePath, landingCoordinates, elementList, 60);
+
         var result = _configurationValidator.Validate(configuration, _mapLoader, _coordinateCalculator);
-        
+
         Assert.IsTrue(result);
     }
 }

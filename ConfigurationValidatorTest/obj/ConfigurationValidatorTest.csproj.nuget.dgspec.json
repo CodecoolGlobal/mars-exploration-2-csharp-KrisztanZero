@@ -1,0 +1,197 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/kincsesbence/Desktop/OOP_Module_Folder/mars-exploration-2-csharp-KrisztanZero/ConfigurationValidatorTest/ConfigurationValidatorTest.csproj": {}
+  },
+  "projects": {
+    "/Users/kincsesbence/Desktop/OOP_Module_Folder/mars-exploration-2-csharp-KrisztanZero/Codecool.MarsExploration.MapExplorer/Codecool.MarsExploration.MapExplorer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/kincsesbence/Desktop/OOP_Module_Folder/mars-exploration-2-csharp-KrisztanZero/Codecool.MarsExploration.MapExplorer/Codecool.MarsExploration.MapExplorer.csproj",
+        "projectName": "Codecool.MarsExploration.MapExplorer",
+        "projectPath": "/Users/kincsesbence/Desktop/OOP_Module_Folder/mars-exploration-2-csharp-KrisztanZero/Codecool.MarsExploration.MapExplorer/Codecool.MarsExploration.MapExplorer.csproj",
+        "packagesPath": "/Users/kincsesbence/.nuget/packages/",
+        "outputPath": "/Users/kincsesbence/Desktop/OOP_Module_Folder/mars-exploration-2-csharp-KrisztanZero/Codecool.MarsExploration.MapExplorer/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/kincsesbence/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/kincsesbence/Desktop/OOP_Module_Folder/mars-exploration-2-csharp-KrisztanZero/Codecool.MarsExploration.MapGenerator/Codecool.MarsExploration.MapGenerator.csproj": {
+                "projectPath": "/Users/kincsesbence/Desktop/OOP_Module_Folder/mars-exploration-2-csharp-KrisztanZero/Codecool.MarsExploration.MapGenerator/Codecool.MarsExploration.MapGenerator.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/6.0.404/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/kincsesbence/Desktop/OOP_Module_Folder/mars-exploration-2-csharp-KrisztanZero/Codecool.MarsExploration.MapGenerator/Codecool.MarsExploration.MapGenerator.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/kincsesbence/Desktop/OOP_Module_Folder/mars-exploration-2-csharp-KrisztanZero/Codecool.MarsExploration.MapGenerator/Codecool.MarsExploration.MapGenerator.csproj",
+        "projectName": "Codecool.MarsExploration.MapGenerator",
+        "projectPath": "/Users/kincsesbence/Desktop/OOP_Module_Folder/mars-exploration-2-csharp-KrisztanZero/Codecool.MarsExploration.MapGenerator/Codecool.MarsExploration.MapGenerator.csproj",
+        "packagesPath": "/Users/kincsesbence/.nuget/packages/",
+        "outputPath": "/Users/kincsesbence/Desktop/OOP_Module_Folder/mars-exploration-2-csharp-KrisztanZero/Codecool.MarsExploration.MapGenerator/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/kincsesbence/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/6.0.404/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/kincsesbence/Desktop/OOP_Module_Folder/mars-exploration-2-csharp-KrisztanZero/ConfigurationValidatorTest/ConfigurationValidatorTest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/kincsesbence/Desktop/OOP_Module_Folder/mars-exploration-2-csharp-KrisztanZero/ConfigurationValidatorTest/ConfigurationValidatorTest.csproj",
+        "projectName": "ConfigurationValidatorTest",
+        "projectPath": "/Users/kincsesbence/Desktop/OOP_Module_Folder/mars-exploration-2-csharp-KrisztanZero/ConfigurationValidatorTest/ConfigurationValidatorTest.csproj",
+        "packagesPath": "/Users/kincsesbence/.nuget/packages/",
+        "outputPath": "/Users/kincsesbence/Desktop/OOP_Module_Folder/mars-exploration-2-csharp-KrisztanZero/ConfigurationValidatorTest/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/kincsesbence/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/kincsesbence/Desktop/OOP_Module_Folder/mars-exploration-2-csharp-KrisztanZero/Codecool.MarsExploration.MapExplorer/Codecool.MarsExploration.MapExplorer.csproj": {
+                "projectPath": "/Users/kincsesbence/Desktop/OOP_Module_Folder/mars-exploration-2-csharp-KrisztanZero/Codecool.MarsExploration.MapExplorer/Codecool.MarsExploration.MapExplorer.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.1.0, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[3.13.3, )"
+            },
+            "NUnit.Analyzers": {
+              "target": "Package",
+              "version": "[3.3.0, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[4.2.1, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/6.0.404/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
