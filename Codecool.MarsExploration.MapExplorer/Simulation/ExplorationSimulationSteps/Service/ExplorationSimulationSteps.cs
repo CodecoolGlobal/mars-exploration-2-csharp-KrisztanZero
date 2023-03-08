@@ -1,30 +1,29 @@
-﻿using Codecool.MarsExploration.MapExplorer.Simulation.Model;
+﻿using Codecool.MarsExploration.MapExplorer.Exploration;
+using Codecool.MarsExploration.MapExplorer.Simulation.Model;
 using Codecool.MarsExploration.MapExplorer.Simulation.MovementRoutines.Service;
 using Codecool.MarsExploration.MapGenerator.Calculators.Model;
-using Codecool.MarsExploration.MapGenerator.MapElements.Model;
 
 namespace Codecool.MarsExploration.MapExplorer.Simulation.ExplorationSimulationSteps.Service;
 
 public class ExplorationSimulationSteps 
 {
-    private SimulationContext _simulationContext;
-    private Coordinate _currentPosition;
-    private OutcomeAnalyzer.OutcomeAnalyzer _outcomeAnalyzer;
-    // private int roverSight;
-
+    private readonly SimulationContext _simulationContext;
+    private readonly OutcomeAnalyzer.OutcomeAnalyzer _outcomeAnalyzer = new OutcomeAnalyzer.OutcomeAnalyzer();
+    
     public ExplorationSimulationSteps(SimulationContext simulationContext)
     {
         _simulationContext = simulationContext;
-
-        _currentPosition = _simulationContext.Rover.CurrentPosition;
-        //_roverSight = _simulationContext.MarsRover.roverSight
+       
     }
     
     public void Run(SimulationContext context)
     {
-        _currentPosition = Movement(_simulationContext);
+        _simulationContext.Map.Representation[
+            _simulationContext.Rover.CurrentPosition.Y, 
+            _simulationContext.Rover.CurrentPosition.X] = ".";
+        _simulationContext.Rover.CurrentPosition = Movement(_simulationContext);
         
-        // scanning
+        ScanCoordinates();
         
         Analysis();
         
@@ -33,23 +32,32 @@ public class ExplorationSimulationSteps
         
         StepIncrement();
     }
-    
+
     public Coordinate Movement(SimulationContext context)
     {
-        IMovementRoutine routine = _simulationContext.Outcome == null ? new ExplorationRoutine() : new ReturnRoutine();
+        IMovementRoutine routine = _simulationContext.Outcome == ExplorationOutcome.Step ? 
+            new ExplorationRoutine() : 
+            new ReturnRoutine();
         
         return routine.NextStep(context);
     }
 
-    public void Scanning()
+    private void ScanCoordinates()
     {
+        List<Coordinate> scannedCoordinates = GetScannedCoordinates(
+            _simulationContext.Rover.Sight, 
+            _simulationContext.Rover.CurrentPosition,
+            _simulationContext.Map.Representation);
         
-        // save all scanned areas with mapElement string
+        foreach (var coordinate in scannedCoordinates)
+        {
+            _simulationContext.Rover.AllScannedPositions
+                .Add(coordinate, _simulationContext.Map.Representation[coordinate.Y, coordinate.X]);
+        }
         
-        throw new NotImplementedException();
     }
 
-    public void Analysis()
+    private void Analysis()
     {
         _simulationContext.Outcome = _outcomeAnalyzer.Analyze(_simulationContext);
         
@@ -60,8 +68,47 @@ public class ExplorationSimulationSteps
         throw new NotImplementedException();
     }
 
-    public void StepIncrement()
+    private void StepIncrement()
     {
         _simulationContext.Steps += 1;
+    }
+
+    private List<Coordinate> GetScannedCoordinates(int sight, Coordinate currentPosition, string?[,] mapRepresentation)
+    {
+        List<Coordinate> scannedCoordinates = new List<Coordinate>();
+        
+        for (int  i = 1; i < sight; i++)
+        {
+            Coordinate above =
+                new Coordinate(
+                    currentPosition.X,
+                    currentPosition.Y - i);
+            
+            if(above.Y > 0) scannedCoordinates.Add(above);
+            
+            Coordinate below =
+                new Coordinate(
+                    currentPosition.X,
+                    currentPosition.Y + i);
+            
+            if(below.Y < mapRepresentation.GetLength(0)) scannedCoordinates.Add(below);
+            
+            Coordinate left =
+                new Coordinate(
+                    currentPosition.X - i,
+                    currentPosition.Y);
+            
+            if(left.X > 0) scannedCoordinates.Add(left);
+            
+            Coordinate right =
+                new Coordinate(
+                    currentPosition.X + i,
+                    currentPosition.Y);
+            
+            if(right.Y < mapRepresentation.GetLength(0)) scannedCoordinates.Add(right);
+            
+        }
+
+        return scannedCoordinates;
     }
 }

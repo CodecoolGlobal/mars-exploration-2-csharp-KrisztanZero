@@ -17,6 +17,8 @@ public class ExplorationSimulator
    {
        _simulationContext = new SimulationContext(0, configuration.Timeout, rover, configuration.LandingCoordinates,
            map, configuration.MonitoredResources, ExplorationOutcome.Step);
+       _explorationSimulationSteps =
+           new ExplorationSimulationSteps.Service.ExplorationSimulationSteps(_simulationContext);
    }
 
     public void Run ()
@@ -25,6 +27,9 @@ public class ExplorationSimulator
         {
             _explorationSimulationSteps.Run(_simulationContext);
         }
+
+        _explorationSimulationSteps.Movement(_simulationContext);
+        
         //while-on kívül Logot létrehozni
     }
 
