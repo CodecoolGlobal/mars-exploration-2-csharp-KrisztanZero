@@ -3,7 +3,7 @@ using Codecool.MarsExploration.MapGenerator.Calculators.Service;
 
 namespace Codecool.MarsExploration.MapExplorer.MarsRover;
 
-public class RoverDeployer
+public static class RoverDeployer
 {
     public static MarsRover Deploy(Configuration.Configuration configuration)
     {

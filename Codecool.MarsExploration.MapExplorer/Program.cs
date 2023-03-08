@@ -1,4 +1,5 @@
 ﻿using Codecool.MarsExploration.MapExplorer.Configuration;
+using Codecool.MarsExploration.MapExplorer.MarsRover;
 using Codecool.MarsExploration.MapGenerator.Calculators.Model;
 using Codecool.MarsExploration.MapGenerator.Calculators.Service;
 using Codecool.MarsExploration.MapGenerator.MapElements.Model;
@@ -23,14 +24,15 @@ class Program
         ConfigurationValidator configurationValidator = new ConfigurationValidator();
 
         Map map;
+        MarsRover.MarsRover rover;
         
         if (configurationValidator.Validate(configuration, mapLoader, coordinateCalculator))
         {
             map = mapLoader.Load(mapFile);
+            rover = RoverDeployer.Deploy(configuration);
             
-            
-            
-            
+
+
         }
         else
         {
@@ -38,9 +40,5 @@ class Program
         }
         
         
-
-
-
-
     }
 }
