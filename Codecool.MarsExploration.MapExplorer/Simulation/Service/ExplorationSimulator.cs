@@ -25,6 +25,9 @@ public class ExplorationSimulator
         {
             _explorationSimulationSteps.Run(_simulationContext);
         }
+
+        _explorationSimulationSteps.Movement(_simulationContext);
+        
         //while-on kívül Logot létrehozni
     }
 
