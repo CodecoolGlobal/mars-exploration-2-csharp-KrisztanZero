@@ -10,7 +10,7 @@ public class RoverDeployer
         var mapLoader = new MapLoader.MapLoader();
         var map = mapLoader.Load(configuration.ReadPath);
 
-        var initialPosition = GetInitialPosition(configuration.LandingCoordinates, map.Representation);
+        var initialPosition = GetInitialPosition(map.Representation, configuration.LandingCoordinates);
 
         // Hardwired sight can be changed later to use constructor instead
         const int sight = 3;
@@ -18,7 +18,7 @@ public class RoverDeployer
         var marsRover = new MarsRover("rover-1", initialPosition, sight, null);
     }
 
-    private static Coordinate? GetInitialPosition(Coordinate spaceshipPosition, string?[,] map)
+    private static Coordinate? GetInitialPosition(string?[,] map, Coordinate spaceshipPosition)
     {
         var coordinateCalculator = new CoordinateCalculator();
         var adjacentCoordinates = coordinateCalculator.GetAdjacentCoordinates(spaceshipPosition, 1);
@@ -32,6 +32,7 @@ public class RoverDeployer
         return adjacentCoordinates.FirstOrDefault(coordinate => CanPlaceRover(map, coordinate));
     }
 
+    // CanPlaceRover is a reused version of CanPlaceOneDimensionalElement method in MapElementPlacer.cs
     private static bool CanPlaceRover(string?[,] map, Coordinate coordinate)
     {
         return coordinate.X >= 0
