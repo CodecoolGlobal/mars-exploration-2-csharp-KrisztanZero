@@ -14,10 +14,8 @@ public class RoverDeployer
 
         // Hardwired sight can be changed later to use constructor instead
         const int sight = 3;
-
-        var monitoredResourcesPositions = GetMonitoredResourcesPositions(map.Representation, initialPosition, sight);
         
-        var marsRover = new MarsRover("rover-1", initialPosition, sight, monitoredResourcesPositions);
+        var marsRover = new MarsRover("rover-1", initialPosition, sight, null);
     }
 
     private static Coordinate? GetInitialPosition(Coordinate spaceshipPosition, string?[,] map)
@@ -25,38 +23,21 @@ public class RoverDeployer
         var coordinateCalculator = new CoordinateCalculator();
         var adjacentCoordinates = coordinateCalculator.GetAdjacentCoordinates(spaceshipPosition, 1);
         
-        var initialPosition = GetFirstAvailableCoordinate(map, adjacentCoordinates);
-        return initialPosition;
+        var roversInitialPosition = GetFirstAvailableCoordinate(map, adjacentCoordinates);
+        return roversInitialPosition;
     }
     
     private static Coordinate? GetFirstAvailableCoordinate(string?[,] map, IEnumerable<Coordinate> adjacentCoordinates)
     {
-        return adjacentCoordinates.FirstOrDefault(coordinate => CanPlaceOneDimensionalElement(map, coordinate));
+        return adjacentCoordinates.FirstOrDefault(coordinate => CanPlaceRover(map, coordinate));
     }
 
-    private static bool CanPlaceOneDimensionalElement(string?[,] map, Coordinate coordinate)
+    private static bool CanPlaceRover(string?[,] map, Coordinate coordinate)
     {
         return coordinate.X >= 0
                && coordinate.X < map.GetLength(0)
                && coordinate.Y >= 0
                && coordinate.Y < map.GetLength(1)
                && map[coordinate.X, coordinate.Y] == null;
-    }
-
-    private static  IEnumerable<IEnumerable<Coordinate>> GetMonitoredResourcesPositions(string?[,] map, Coordinate initialPosition, int sight)
-    {
-        
-        var coordinatesInSight = GetCoordinatesInSight(map, initialPosition, sight);
-        var coordinatesInSightThatAreNotNull = coordinatesInSight.Where(c => true);
-        
-        var monitoredResourcesPositions = Enumerable.Repeat(Enumerable.Empty<Coordinate>(), 0);
-        monitoredResourcesPositions = monitoredResourcesPositions.Concat(new[] { coordinatesInSightThatAreNotNull });
-
-        return monitoredResourcesPositions;
-    }
-
-    private static IEnumerable<Coordinate> GetCoordinatesInSight(string?[,] map, object initialPosition, int sight)
-    {
-        throw new NotImplementedException();
     }
 }
