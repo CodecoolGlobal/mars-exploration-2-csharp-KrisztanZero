@@ -6,5 +6,5 @@ namespace Codecool.MarsExploration.MapExplorer.Simulation.OutcomeAnalyzer;
 
 public interface IOutcomeAnalyzer
 {
-    ExplorationOutcome Analyze(Dictionary<Coordinate, string>? context);
+    ExplorationOutcome Analyze(SimulationContext context);
 }
