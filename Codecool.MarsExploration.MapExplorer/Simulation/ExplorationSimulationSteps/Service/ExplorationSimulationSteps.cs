@@ -60,7 +60,7 @@ public class ExplorationSimulationSteps
         _simulationContext.Outcome = _outcomeAnalyzer.Analyze(_simulationContext);
     }
 
-    public void LogEvent()
+    private void LogEvent()
     {
         List<Coordinate> scannedCoordinates = GetScannedCoordinates(
             _simulationContext.Rover.Sight,
@@ -73,7 +73,7 @@ public class ExplorationSimulationSteps
             {
                 if (_simulationContext.Map.Representation[coordinate.Y, coordinate.X] == resource)
                 {
-                    var log = "";
+                    string log;
                     if (_simulationContext.Outcome == ExplorationOutcome.Step)
                     {
                         log = $"" +
