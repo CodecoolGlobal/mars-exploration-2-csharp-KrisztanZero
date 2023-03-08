@@ -7,7 +7,7 @@ public class TimeoutAnalyzer : IAnalyzer
 {
     public ExplorationOutcome Outcome => ExplorationOutcome.Timeout;
 
-    public bool Analyze(SimulationContext context)
+    public bool AnalyzerOutcome(SimulationContext context)
     {
         return context.Steps >= context.StepsToTimeout;
     }

@@ -6,5 +6,5 @@ namespace Codecool.MarsExploration.MapExplorer.Simulation.OutcomeAnalyzer;
 public interface IAnalyzer
 {
     ExplorationOutcome Outcome { get; }
-    bool Analyze(SimulationContext context);
+    bool AnalyzerOutcome(SimulationContext context);
 }

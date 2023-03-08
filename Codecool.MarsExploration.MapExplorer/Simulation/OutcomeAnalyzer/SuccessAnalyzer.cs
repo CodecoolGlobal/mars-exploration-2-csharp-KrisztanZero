@@ -7,7 +7,7 @@ public class SuccessAnalyzer : IAnalyzer
 {
     public ExplorationOutcome Outcome => ExplorationOutcome.Colonizable;
 
-    public bool Analyze(SimulationContext context)
+    public bool AnalyzerOutcome(SimulationContext context)
     {
         // Condition 1: there is mineral within 5 empty coordinates of water
         var waterCoordinates = context.Map.GetCoordinatesOf(ElementType.Water);
