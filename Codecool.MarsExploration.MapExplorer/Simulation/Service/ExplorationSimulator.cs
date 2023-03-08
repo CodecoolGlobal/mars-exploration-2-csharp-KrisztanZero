@@ -1,5 +1,6 @@
 using System.Security.Cryptography.X509Certificates;
 using Codecool.MarsExploration.MapExplorer.Configuration;
+using Codecool.MarsExploration.MapExplorer.Exploration;
 using Codecool.MarsExploration.MapExplorer.MapLoader;
 using Codecool.MarsExploration.MapExplorer.Simulation.Model;
 using Codecool.MarsExploration.MapGenerator.Calculators.Model;
@@ -9,25 +10,22 @@ namespace Codecool.MarsExploration.MapExplorer.Simulation.Service;
 
 public class ExplorationSimulator
 {
-    private Configuration.Configuration _configuration;
-    private MapLoader.MapLoader _mapLoader;
-    private MarsRover.MarsRover _rover;
-    private string _mapFile;
+    private SimulationContext _simulationContext;
+    private ExplorationSimulationSteps.Service.ExplorationSimulationSteps _explorationSimulationSteps;
+    
+   public ExplorationSimulator(MarsRover.MarsRover rover, Map map, Configuration.Configuration configuration)
+   {
+       _simulationContext = new SimulationContext(0, configuration.Timeout, rover, configuration.LandingCoordinates,
+           map, configuration.MonitoredResources, ExplorationOutcome.Step);
+   }
 
-   public ExplorationSimulator(MarsRover.MarsRover rover, string mapFile, Configuration.Configuration)
+    public void Run ()
     {
-        _rover = rover;
-        _mapFile = mapFile;
+        while (_simulationContext.Outcome == ExplorationOutcome.Step)
+        {
+            _explorationSimulationSteps.Run(_simulationContext);
+        }
+        //while-on kívül Logot létrehozni
     }
 
-    public SimulationContext CreateSimulationContext(Map map, Configuration.Configuration configuration)
-    {
-        
-        return new SimulationContext(0, configuration.Timeout, _rover, configuration.LandingCoordinates, map, configuration.MonitoredResources, null);
-    }
-    public SimulationContext ExploringSimulator(Map map, Configuration.Configuration configuration, SimulationContext simulationContext)
-    {
-        simulationContext = new SimulationContext(0, configuration.Timeout, _rover, configuration.LandingCoordinates, map, configuration.MonitoredResources, null)
-        return simulationContext;
-    }
 }
