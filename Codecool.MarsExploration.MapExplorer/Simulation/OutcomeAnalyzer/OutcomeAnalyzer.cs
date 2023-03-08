@@ -22,7 +22,7 @@ public class OutcomeAnalyzer : IOutcomeAnalyzer
     {
         foreach (var analyzer in _analyzers)
         {
-            if (analyzer.Analyze(context))
+            if (analyzer.AnalyzerOutcome(context))
             {
                 return analyzer.Outcome;
             }
