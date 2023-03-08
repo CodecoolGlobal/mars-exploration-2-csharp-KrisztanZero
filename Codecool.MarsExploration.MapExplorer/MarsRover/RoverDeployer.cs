@@ -5,7 +5,7 @@ namespace Codecool.MarsExploration.MapExplorer.MarsRover;
 
 public class RoverDeployer
 {
-    public static void Deploy(Configuration.Configuration configuration)
+    public static MarsRover Deploy(Configuration.Configuration configuration)
     {
         var mapLoader = new MapLoader.MapLoader();
         var map = mapLoader.Load(configuration.ReadPath);
@@ -16,6 +16,7 @@ public class RoverDeployer
         const int sight = 3;
         
         var marsRover = new MarsRover("rover-1", initialPosition, sight, null);
+        return marsRover;
     }
 
     private static Coordinate? GetInitialPosition(string?[,] map, Coordinate spaceshipPosition)
