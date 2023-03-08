@@ -5,11 +5,13 @@ namespace Codecool.MarsExploration.MapExplorer.Simulation.OutcomeAnalyzer;
 
 public class LackOfResourcesAnalyzer : IAnalyzer
 {
-    public ExplorationOutcome Outcome => ExplorationOutcome.Error;
+    public ExplorationOutcome Outcome => ExplorationOutcome.LackOfResource;
 
     public bool AnalyzerOutcome(SimulationContext context)
     {
-        var exploredRatio = (double)context.Map.Count(ElementType.Empty) / context.Map.Size;
-        return exploredRatio <= 0.05; // 95% of the map has been explored
+        var allScannedPositions = context.Rover.AllScannedPositions;
+        var edgeOfChart = context.StepsToTimeout * 5 / 100;
+        
+        return context.StepsToTimeout <= edgeOfChart && !allScannedPositions.Values.Contains("*") && !allScannedPositions.Values.Contains("%");
     }
 }
