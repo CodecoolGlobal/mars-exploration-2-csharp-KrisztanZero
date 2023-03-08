@@ -22,27 +22,27 @@ public class ExplorationRoutine : IMovementRoutine
         var mapRepresentation = context.Map.Representation;
         List<Coordinate> adjacentFreeCoordinates = new List<Coordinate>();
 
-        if (context.Rover.currentPosition.Y - 1 >= 0 && mapRepresentation[context.Rover.currentPosition.Y - 1, context.Rover.currentPosition.X] == " ")
+        if (context.Rover.CurrentPosition.Y - 1 >= 0 && mapRepresentation[context.Rover.CurrentPosition.Y - 1, context.Rover.CurrentPosition.X] == " ")
         {
-            var coordinate = new Coordinate(context.Rover.currentPosition.X, context.Rover.currentPosition.Y - 1);
+            var coordinate = new Coordinate(context.Rover.CurrentPosition.X, context.Rover.CurrentPosition.Y - 1);
             adjacentFreeCoordinates.Add(coordinate);
         }
         
-        if (context.Rover.currentPosition.Y + 1 >= 0 && mapRepresentation[context.Rover.currentPosition.Y + 1, context.Rover.currentPosition.X] == " ")
+        if (context.Rover.CurrentPosition.Y + 1 >= 0 && mapRepresentation[context.Rover.CurrentPosition.Y + 1, context.Rover.CurrentPosition.X] == " ")
         {
-            var coordinate = new Coordinate(context.Rover.currentPosition.X, context.Rover.currentPosition.Y + 1);
+            var coordinate = new Coordinate(context.Rover.CurrentPosition.X, context.Rover.CurrentPosition.Y + 1);
             adjacentFreeCoordinates.Add(coordinate);
         }
         
-        if (context.Rover.currentPosition.X - 1 >= 0 && mapRepresentation[context.Rover.currentPosition.Y, context.Rover.currentPosition.X - 1] == " ")
+        if (context.Rover.CurrentPosition.X - 1 >= 0 && mapRepresentation[context.Rover.CurrentPosition.Y, context.Rover.CurrentPosition.X - 1] == " ")
         {
-            var coordinate = new Coordinate(context.Rover.currentPosition.X - 1, context.Rover.currentPosition.Y);
+            var coordinate = new Coordinate(context.Rover.CurrentPosition.X - 1, context.Rover.CurrentPosition.Y);
             adjacentFreeCoordinates.Add(coordinate);
         }
         
-        if (context.Rover.currentPosition.X + 1 >= 0 && mapRepresentation[context.Rover.currentPosition.Y, context.Rover.currentPosition.X + 1] == " ")
+        if (context.Rover.CurrentPosition.X + 1 >= 0 && mapRepresentation[context.Rover.CurrentPosition.Y, context.Rover.CurrentPosition.X + 1] == " ")
         {
-            var coordinate = new Coordinate(context.Rover.currentPosition.X + 1, context.Rover.currentPosition.Y);
+            var coordinate = new Coordinate(context.Rover.CurrentPosition.X + 1, context.Rover.CurrentPosition.Y);
             adjacentFreeCoordinates.Add(coordinate);
         }
 

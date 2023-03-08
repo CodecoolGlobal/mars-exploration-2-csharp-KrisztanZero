@@ -9,6 +9,7 @@ public class ExplorationSimulationSteps
 {
     private SimulationContext _simulationContext;
     private Coordinate _currentPosition;
+    private OutcomeAnalyzer.OutcomeAnalyzer _outcomeAnalyzer;
     // private int roverSight;
 
     public ExplorationSimulationSteps(SimulationContext simulationContext)
@@ -23,6 +24,13 @@ public class ExplorationSimulationSteps
     {
         _currentPosition = Movement(_simulationContext);
         
+        // scanning
+        
+        Analysis();
+        
+        // Log
+        
+        
         StepIncrement();
     }
     
@@ -36,13 +44,15 @@ public class ExplorationSimulationSteps
     public void Scanning()
     {
         
+        // save all scanned areas with mapElement string
         
         throw new NotImplementedException();
     }
 
     public void Analysis()
     {
-        throw new NotImplementedException();
+        _simulationContext.Outcome = _outcomeAnalyzer.Analyze(_simulationContext);
+        
     }
 
     public void Log()
