@@ -9,25 +9,17 @@ namespace Codecool.MarsExploration.MapExplorer.Simulation.Service;
 
 public class ExplorationSimulator
 {
-    private Configuration.Configuration _configuration;
-    private MapLoader.MapLoader _mapLoader;
-    private MarsRover.MarsRover _rover;
-    private string _mapFile;
+    private SimulationContext _simulationContext;
 
-   public ExplorationSimulator(MarsRover.MarsRover rover, string mapFile, Configuration.Configuration)
+   public ExplorationSimulator(MarsRover.MarsRover rover, Map map, Configuration.Configuration configuration)
+   {
+       _simulationContext = new SimulationContext(0, configuration.Timeout, rover, configuration.LandingCoordinates,
+           map, configuration.MonitoredResources, null);
+   }
+
+    public void Run ()
     {
-        _rover = rover;
-        _mapFile = mapFile;
+
     }
 
-    public SimulationContext CreateSimulationContext(Map map, Configuration.Configuration configuration)
-    {
-        
-        return new SimulationContext(0, configuration.Timeout, _rover, configuration.LandingCoordinates, map, configuration.MonitoredResources, null);
-    }
-    public SimulationContext ExploringSimulator(Map map, Configuration.Configuration configuration, SimulationContext simulationContext)
-    {
-        simulationContext = new SimulationContext(0, configuration.Timeout, _rover, configuration.LandingCoordinates, map, configuration.MonitoredResources, null)
-        return simulationContext;
-    }
 }

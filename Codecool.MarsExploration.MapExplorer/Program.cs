@@ -1,5 +1,6 @@
 ﻿using Codecool.MarsExploration.MapExplorer.Configuration;
 using Codecool.MarsExploration.MapExplorer.MarsRover;
+using Codecool.MarsExploration.MapExplorer.Simulation.Service;
 using Codecool.MarsExploration.MapGenerator.Calculators.Model;
 using Codecool.MarsExploration.MapGenerator.Calculators.Service;
 using Codecool.MarsExploration.MapGenerator.MapElements.Model;
@@ -30,9 +31,8 @@ class Program
         {
             map = mapLoader.Load(mapFile);
             rover = RoverDeployer.Deploy(configuration);
-            
-
-
+            ExplorationSimulator explorationSimulator = new ExplorationSimulator(rover, map, configuration);
+            explorationSimulator.Run();
         }
         else
         {
