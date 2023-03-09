@@ -9,7 +9,7 @@ public class ExplorationSimulationSteps
 {
     private readonly SimulationContext _simulationContext;
     private readonly OutcomeAnalyzer.OutcomeAnalyzer _outcomeAnalyzer = new OutcomeAnalyzer.OutcomeAnalyzer();
-    
+
 
     public ExplorationSimulationSteps(SimulationContext simulationContext)
     {
@@ -18,9 +18,6 @@ public class ExplorationSimulationSteps
 
     public void Run(SimulationContext context)
     {
-        _simulationContext.Map.Representation[
-            _simulationContext.Rover.CurrentPosition.Y,
-            _simulationContext.Rover.CurrentPosition.X] = ".";
         _simulationContext.Rover.CurrentPosition = RoverMovement(_simulationContext);
 
         ScanCoordinatesInSight();
@@ -43,15 +40,34 @@ public class ExplorationSimulationSteps
 
     private void ScanCoordinatesInSight()
     {
-        List<Coordinate> scannedCoordinates = GetScannedCoordinates(
+        var scannedCoordinates = GetScannedCoordinates(
             _simulationContext.Rover.Sight,
             _simulationContext.Rover.CurrentPosition,
             _simulationContext.Map.Representation);
 
+        var coordinateToOmit = new List<Coordinate>();
+
         foreach (var coordinate in scannedCoordinates)
         {
-            _simulationContext.Rover.AllScannedPositions
-                .Add(coordinate, _simulationContext.Map.Representation[coordinate.Y, coordinate.X]);
+            foreach (var position in _simulationContext.Rover.AllScannedPositions)
+            {
+                if (position.Item1 == coordinate)
+                {
+                    coordinateToOmit.Add(coordinate);
+                }
+            }
+        }
+
+        foreach (var coordinate in scannedCoordinates)
+        {
+            foreach (var toOmit in coordinateToOmit)
+            {
+                if (coordinate != toOmit)
+                {
+                    _simulationContext.Rover.AllScannedPositions.Add((coordinate,
+                        _simulationContext.Map.Representation[coordinate.Y, coordinate.X]));
+                }
+            }
         }
     }
 
@@ -71,30 +87,33 @@ public class ExplorationSimulationSteps
         {
             foreach (var resource in _simulationContext.MonitoredResources)
             {
+                string log;
+
                 if (_simulationContext.Map.Representation[coordinate.Y, coordinate.X] == resource)
                 {
-                    string log;
                     if (_simulationContext.Outcome == ExplorationOutcome.Step)
                     {
                         log = $"" +
-                                  $"STEP: {_simulationContext.Steps}; " +
-                                  $"EVENT: {_simulationContext.Outcome.ToString()}; " +
-                                  $"UNIT: {_simulationContext.Rover.Id};" +
-                                  $"RESOURCE: {resource}; " +
-                                  $"POSITION: X:{coordinate.X}, Y:{coordinate.Y}";
+                              $"STEP: {_simulationContext.Steps}; " +
+                              $"EVENT: {_simulationContext.Outcome.ToString()}; " +
+                              $"UNIT: {_simulationContext.Rover.Id};" +
+                              $"RESOURCE: {resource}; " +
+                              $"POSITION: X:{coordinate.X}, Y:{coordinate.Y}";
+                        Logger.Logger logger = new Logger.Logger();
+                        logger.LogToConsole(log);
                     }
-                    else
-                    {
-                        log = $"" +
-                                  $"STEP: {_simulationContext.Steps}; " +
-                                  $"EVENT: {_simulationContext.Outcome.ToString()}";
-
-                    }
-
-                    Logger.Logger logger = new Logger.Logger();
-                    logger.LogToConsole(log);
                 }
             }
+        }
+
+        if (_simulationContext.Outcome != ExplorationOutcome.Step)
+        {
+            var log = "";
+            log = $"" +
+                  $"STEP: {_simulationContext.Steps}; " +
+                  $"EVENT: {_simulationContext.Outcome.ToString()}";
+            Logger.Logger logger = new Logger.Logger();
+            logger.LogToConsole(log);
         }
     }
 
@@ -107,7 +126,7 @@ public class ExplorationSimulationSteps
     {
         var scannedCoordinates = new List<Coordinate>();
 
-        for (int i = 1; i < sight; i++)
+        for (int i = 1; i <= sight; i++)
         {
             Coordinate above =
                 new Coordinate(
