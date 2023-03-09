@@ -60,12 +60,21 @@ public class ExplorationSimulationSteps
 
         foreach (var coordinate in scannedCoordinates)
         {
-            foreach (var toOmit in coordinateToOmit)
+            if (coordinateToOmit.Count == 0)
             {
-                if (coordinate != toOmit)
+                _simulationContext.Rover.AllScannedPositions.Add((coordinate,
+                    _simulationContext.Map.Representation[coordinate.Y, coordinate.X]));
+            }
+            else
+            {
+                foreach (var toOmit in coordinateToOmit)
                 {
-                    _simulationContext.Rover.AllScannedPositions.Add((coordinate,
-                        _simulationContext.Map.Representation[coordinate.Y, coordinate.X]));
+                    if (coordinate != toOmit)
+                    {
+                        _simulationContext.Rover.AllScannedPositions.Add((coordinate,
+                            _simulationContext.Map.Representation[coordinate.Y, coordinate.X]));
+                        //_simulationContext.Rover.AllScannedPositions.Add(new (coordinate, _simulationContext.Map.Representation[coordinate.Y, coordinate.X]));
+                    }
                 }
             }
         }
