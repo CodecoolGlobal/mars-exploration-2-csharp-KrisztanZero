@@ -23,7 +23,7 @@ public class SuccessAnalyzer : IAnalyzer
         var landingNearbyWater = scannedPositions.Any(c =>
             c.Item2 == "%" && DistanceBetween(landingLocation, c.Item1) <= 10);
 
-        return minerals >= 10 || waters >= 10 || waterNearby || landingNearbyWater;
+        return minerals >= 4 && waters >= 3 && waterNearby && landingNearbyWater;
     }
 
     private static int DistanceBetween(Coordinate from, Coordinate to)
