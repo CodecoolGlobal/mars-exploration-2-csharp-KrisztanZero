@@ -31,6 +31,11 @@ public class ExplorationSimulator
         
         _simulationContext.Rover.CurrentPosition = _explorationSimulationSteps.RoverMovement(_simulationContext);
         
+        var minerals = _simulationContext.Rover.AllScannedPositions.Count(c => c.Item2 == "*");
+        var waterSources = _simulationContext.Rover.AllScannedPositions.Count(c => c.Item2 == "%");
+
+        Console.WriteLine($"\nNumber of minerals found: {minerals}");
+        Console.WriteLine($"Number of water sources: {waterSources}");
         
     }
 
