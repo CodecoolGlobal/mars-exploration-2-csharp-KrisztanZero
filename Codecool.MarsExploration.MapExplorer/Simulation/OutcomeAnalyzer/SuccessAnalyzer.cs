@@ -15,11 +15,13 @@ public class SuccessAnalyzer : IAnalyzer
         var minerals = scannedPositions.Count(c => c.Item2 == "*");
         var waters = scannedPositions.Count(c => c.Item2 == "%");
 
-        /*var waterNearby = coordinates.Any(c =>
-            scannedPositions[c] == "%" &&
-            coordinates.Any(nc => DistanceBetween(nc, c) <= 5 && scannedPositions[nc] == " "));
+        // Krisztián, please revise below recommendation
         
-        var landingLocation = context.SpaceShipLocation;
+        /*var waterNearby = scannedPositions.Any(c =>
+            c.Item2 == "%" &&
+            scannedPositions.Any(nc => DistanceBetween(nc.Item1, c.Item1) <= 5));*/
+        
+        /*var landingLocation = context.SpaceShipLocation;
         var landingNearbyWater = coordinates.Any(c =>
             scannedPositions[c] == "%" && DistanceBetween(landingLocation, c) <= 10);*/
 
