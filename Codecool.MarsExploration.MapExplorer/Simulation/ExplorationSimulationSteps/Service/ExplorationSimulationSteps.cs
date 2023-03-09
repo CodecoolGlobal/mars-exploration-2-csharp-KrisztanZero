@@ -93,7 +93,7 @@ public class ExplorationSimulationSteps
                         log = $"" +
                               $"STEP: {_simulationContext.Steps}; " +
                               $"EVENT: {ExplorationOutcome.Step}; " +
-                              $"UNIT: {_simulationContext.Rover.Id};" +
+                              $"UNIT: {_simulationContext.Rover.Id}; " +
                               $"RESOURCE: {resource}; " +
                               $"POSITION: X:{coordinate.X}, Y:{coordinate.Y}";
                         Logger.Logger logger = new Logger.Logger();
@@ -106,7 +106,7 @@ public class ExplorationSimulationSteps
         if (_simulationContext.Outcome != ExplorationOutcome.Step)
         {
             var log = "";
-            log = $"" +
+            log = $"\n" +
                   $"STEP: {_simulationContext.Steps}; " +
                   $"EVENT: {_simulationContext.Outcome.ToString()}";
             Logger.Logger logger = new Logger.Logger();
