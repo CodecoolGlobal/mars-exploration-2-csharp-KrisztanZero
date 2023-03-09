@@ -15,14 +15,15 @@ public static class RoverDeployer
         // Hardwired sight can be changed later to use constructor instead
         const int sight = 3;
         
-        var marsRover = new MarsRover("rover-1", initialPosition, sight, null);
+        var marsRover = new MarsRover("rover-1", initialPosition, sight, new List<(Coordinate, string)>());
         return marsRover;
     }
 
     private static Coordinate? GetInitialPosition(string?[,] map, Coordinate spaceshipPosition)
     {
         var coordinateCalculator = new CoordinateCalculator();
-        var adjacentCoordinates = coordinateCalculator.GetAdjacentCoordinates(spaceshipPosition, 1);
+        var dimension = map.GetLength(0);
+        var adjacentCoordinates = coordinateCalculator.GetAdjacentCoordinates(spaceshipPosition, dimension);
         
         var roversInitialPosition = GetFirstAvailableCoordinate(map, adjacentCoordinates);
         return roversInitialPosition;
@@ -40,6 +41,6 @@ public static class RoverDeployer
                && coordinate.X < map.GetLength(0)
                && coordinate.Y >= 0
                && coordinate.Y < map.GetLength(1)
-               && map[coordinate.X, coordinate.Y] == null;
+               && map[coordinate.X, coordinate.Y] == " ";
     }
 }

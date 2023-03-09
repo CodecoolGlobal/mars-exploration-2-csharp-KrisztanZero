@@ -10,8 +10,11 @@ public class LackOfResourcesAnalyzer : IAnalyzer
     public bool AnalyzerOutcome(SimulationContext context)
     {
         var allScannedPositions = context.Rover.AllScannedPositions;
-        var edgeOfChart = context.StepsToTimeout * 5 / 100;
+        var edgeOfChart = 50;
+
         
-        return context.StepsToTimeout <= edgeOfChart && !allScannedPositions.Values.Contains("*") && !allScannedPositions.Values.Contains("%");
+        return context.StepsToTimeout <= edgeOfChart &&  
+               (from position in allScannedPositions from resource 
+                   in context.MonitoredResources where position.Item2 == resource select position).Any();
     }
 }

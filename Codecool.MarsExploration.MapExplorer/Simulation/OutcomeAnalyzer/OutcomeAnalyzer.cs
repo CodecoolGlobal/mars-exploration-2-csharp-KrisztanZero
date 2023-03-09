@@ -12,9 +12,10 @@ public class OutcomeAnalyzer : IOutcomeAnalyzer
     {
         _analyzers = new List<IAnalyzer>
         {
-            new TimeoutAnalyzer(),
+            
             new SuccessAnalyzer(),
-            new LackOfResourcesAnalyzer()
+            new LackOfResourcesAnalyzer(),
+            new TimeoutAnalyzer(),
         };
     }
 
@@ -28,6 +29,6 @@ public class OutcomeAnalyzer : IOutcomeAnalyzer
             }
         }
 
-        return ExplorationOutcome.Error;
+        return ExplorationOutcome.Step;
     }
 }

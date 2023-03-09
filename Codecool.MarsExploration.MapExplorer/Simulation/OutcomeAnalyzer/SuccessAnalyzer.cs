@@ -10,20 +10,22 @@ public class SuccessAnalyzer : IAnalyzer
 
     public bool AnalyzerOutcome(SimulationContext context)
     {
-        var scannedPositions = context.Rover.AllScannedPositions ?? new Dictionary<Coordinate, string>();
-        var coordinates = scannedPositions.Keys;
-        var minerals = coordinates.Count(c => scannedPositions[c] == "*");
-        var waters = coordinates.Count(c => scannedPositions[c] == "%");
-
-        var waterNearby = coordinates.Any(c =>
-            scannedPositions[c] == "%" &&
-            coordinates.Any(nc => DistanceBetween(nc, c) <= 5 && scannedPositions[nc] == null));
+        var scannedPositions = context.Rover.AllScannedPositions;
         
-        var landingLocation = context.SpaceShipLocation;
-        var landingNearbyWater = coordinates.Any(c =>
-            scannedPositions[c] == "%" && DistanceBetween(landingLocation, c) <= 10);
+        var minerals = scannedPositions.Count(c => c.Item2 == "*");
+        var waters = scannedPositions.Count(c => c.Item2 == "%");
 
-        return minerals >= 4 && waters >= 3 && waterNearby && landingNearbyWater;
+        // Krisztián, please revise below recommendation
+        
+        /*var waterNearby = scannedPositions.Any(c =>
+            c.Item2 == "%" &&
+            scannedPositions.Any(nc => DistanceBetween(nc.Item1, c.Item1) <= 5));*/
+        
+        /*var landingLocation = context.SpaceShipLocation;
+        var landingNearbyWater = coordinates.Any(c =>
+            scannedPositions[c] == "%" && DistanceBetween(landingLocation, c) <= 10);*/
+
+        return minerals >= 10 || waters >= 10 /*|| waterNearby || landingNearbyWater*/;
     }
 
     private static int DistanceBetween(Coordinate from, Coordinate to)

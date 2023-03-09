@@ -18,7 +18,7 @@ public class ExplorationRoutine : IMovementRoutine
 
     public List<Coordinate> GetAdjacentFreeCoordinates(SimulationContext context)
     {
-        var mapSize = context.Map.Representation.Length;
+        
         var mapRepresentation = context.Map.Representation;
         List<Coordinate> adjacentFreeCoordinates = new List<Coordinate>();
 
