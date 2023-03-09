@@ -35,6 +35,7 @@ public class ExplorationSimulationSteps
             ? new ExplorationRoutine()
             : new ReturnRoutine();
 
+        
         return routine.NextStep(context);
     }
 
@@ -45,25 +46,14 @@ public class ExplorationSimulationSteps
             _simulationContext.Rover.CurrentPosition,
             _simulationContext.Map.Representation);
 
-        var coordinateToOmit = new List<Coordinate>();
-
-        foreach (var coordinate in scannedCoordinates)
-        {
-            foreach (var position in _simulationContext.Rover.AllScannedPositions)
-            {
-                if (position.Item1 == coordinate)
-                {
-                    coordinateToOmit.Add(coordinate);
-                }
-            }
-        }
+        var coordinateToOmit = GetCoordinatesToOmit(scannedCoordinates);
+       
 
         foreach (var coordinate in scannedCoordinates)
         {
             if (coordinateToOmit.Count == 0)
             {
-                _simulationContext.Rover.AllScannedPositions.Add((coordinate,
-                    _simulationContext.Map.Representation[coordinate.Y, coordinate.X]));
+                _simulationContext.Rover.AllScannedPositions.Add((coordinate, _simulationContext.Map.Representation[coordinate.Y, coordinate.X]));
             }
             else
             {
@@ -71,9 +61,8 @@ public class ExplorationSimulationSteps
                 {
                     if (coordinate != toOmit)
                     {
-                        _simulationContext.Rover.AllScannedPositions.Add((coordinate,
-                            _simulationContext.Map.Representation[coordinate.Y, coordinate.X]));
-                        //_simulationContext.Rover.AllScannedPositions.Add(new (coordinate, _simulationContext.Map.Representation[coordinate.Y, coordinate.X]));
+                        _simulationContext.Rover.AllScannedPositions.Add((coordinate, _simulationContext.Map.Representation[coordinate.Y, coordinate.X]));
+                        break;
                     }
                 }
             }
@@ -100,17 +89,16 @@ public class ExplorationSimulationSteps
 
                 if (_simulationContext.Map.Representation[coordinate.Y, coordinate.X] == resource)
                 {
-                    if (_simulationContext.Outcome == ExplorationOutcome.Step)
-                    {
+                  
                         log = $"" +
                               $"STEP: {_simulationContext.Steps}; " +
-                              $"EVENT: {_simulationContext.Outcome.ToString()}; " +
+                              $"EVENT: {ExplorationOutcome.Step}; " +
                               $"UNIT: {_simulationContext.Rover.Id};" +
                               $"RESOURCE: {resource}; " +
                               $"POSITION: X:{coordinate.X}, Y:{coordinate.Y}";
                         Logger.Logger logger = new Logger.Logger();
                         logger.LogToConsole(log);
-                    }
+                    
                 }
             }
         }
@@ -167,5 +155,22 @@ public class ExplorationSimulationSteps
         }
 
         return scannedCoordinates;
+    }
+
+    private List<Coordinate> GetCoordinatesToOmit(List<Coordinate> scannedCoordinates)
+    {
+        List<Coordinate> coordinateToOmit = new List<Coordinate>();
+        foreach (var coordinate in scannedCoordinates)
+        {
+            foreach (var position in _simulationContext.Rover.AllScannedPositions)
+            {
+                if (position.Item1 == coordinate)
+                {
+                    coordinateToOmit.Add(coordinate);
+                }
+            }
+        }
+
+        return coordinateToOmit;
     }
 }

@@ -10,23 +10,20 @@ public class SuccessAnalyzer : IAnalyzer
 
     public bool AnalyzerOutcome(SimulationContext context)
     {
-        var scannedPositions = 
-            context.Rover.AllScannedPositions
-                .ToDictionary(x => x.Item1, x => x.Item2);;
+        var scannedPositions = context.Rover.AllScannedPositions;
         
-        var coordinates = scannedPositions.Keys;
-        var minerals = scannedPositions.Count(c => c.Value == "*");
-        var waters = scannedPositions.Count(c => c.Value == "%");
+        var minerals = scannedPositions.Count(c => c.Item2 == "*");
+        var waters = scannedPositions.Count(c => c.Item2 == "%");
 
-        var waterNearby = coordinates.Any(c =>
+        /*var waterNearby = coordinates.Any(c =>
             scannedPositions[c] == "%" &&
             coordinates.Any(nc => DistanceBetween(nc, c) <= 5 && scannedPositions[nc] == " "));
         
         var landingLocation = context.SpaceShipLocation;
         var landingNearbyWater = coordinates.Any(c =>
-            scannedPositions[c] == "%" && DistanceBetween(landingLocation, c) <= 10);
+            scannedPositions[c] == "%" && DistanceBetween(landingLocation, c) <= 10);*/
 
-        return minerals >= 1 || waters >= 1 || waterNearby || landingNearbyWater;
+        return minerals >= 10 || waters >= 10 /*|| waterNearby || landingNearbyWater*/;
     }
 
     private static int DistanceBetween(Coordinate from, Coordinate to)

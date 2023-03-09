@@ -10,7 +10,7 @@ public class LackOfResourcesAnalyzer : IAnalyzer
     public bool AnalyzerOutcome(SimulationContext context)
     {
         var allScannedPositions = context.Rover.AllScannedPositions;
-        var edgeOfChart = 99;
+        var edgeOfChart = 50;
 
         
         return context.StepsToTimeout <= edgeOfChart &&  
